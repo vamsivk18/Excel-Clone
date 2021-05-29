@@ -1,0 +1,139 @@
+body {
+    margin: 0%;
+    overflow: hidden;
+    font-size: 18px;
+}
+* {
+    box-sizing: border-box;
+}
+.container {
+    height: 100vh;
+}
+.title-bar {
+    height: 5vh;
+    background-color: #107c41;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.menu-bar {
+    height: 5vh;
+    background-color: #107c41;
+    display: flex;
+}
+
+.menu-item {
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    color: white;
+    font-size: 16px;
+    align-items: center;
+}
+
+.menu-item.selected {
+    background-color: white;
+    color:#107c41;
+}
+
+.menu-item:hover{
+    background-color: #0b5728;
+    cursor: pointer;
+}
+.menu-item.selected:hover {
+    cursor: default;
+    background-color: white;
+}
+.menu-icon-bar {
+    height: 6vh;
+    background-color: lightgrey;
+    display: flex;
+    align-items: center;
+}
+.menu-icon {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.menu-icon:hover {
+    height: 100%;
+    background-color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.selector {
+    height: 80%;
+    font-size: 18px;
+}
+.font-family-selector {
+    width: 150px;
+}
+.formula-bar {
+    height: 5vh;
+}
+.data-container {
+    height: 75vh;
+    display: flex;
+    flex-wrap: wrap;
+}
+.select-all {
+    width: 30px;
+    height: 30px;
+    border: 1px solid green;
+}
+.column-name-container {
+    width: calc(100vw - 30px);
+    height: 30px;
+    border: 1px solid red;
+}
+.row-name-container {
+    width: 30px;
+    height: calc(75vh - 30px);
+    border: 1px solid blue;
+}
+.input-cell-container {
+    width: calc(100vw - 30px);
+    height: calc(75vh - 30px);
+    border: 1px solid green;
+}
+.sheet-bar {
+    height: 4vh;
+    display: flex;
+    align-items: center;
+}
+.sheet-bar-icon {
+    
+}
+.scroller {
+    width: 70px;
+}
+.icon-add {
+    color: #107c41;
+    width: 40px;
+}
+.sheet-tab {
+    border-bottom: 3px solid #107c41;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 80px;
+    text-align: center;
+    font-weight: 600;
+    border-right: 1px solid lightgrey;
+}
+.icon-left-scroll:hover,.icon-right-scroll:hover{
+    background-color: lightgrey;
+    cursor: pointer;
+}
+.sheet-tab-container {
+    border: 1px solid lightgrey;
+    width: calc(100vw - 111px)
+}
+.icon-add:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+.sheet-tab:hover{
+    cursor: default;
+}
