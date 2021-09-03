@@ -95,6 +95,7 @@ body {
     width: calc(100vw - 30px);
     height: 30px;
     border: 1px solid lightgray;
+    overflow: hidden;
 }
 .row-name-container {
     width: 30px;
@@ -106,7 +107,7 @@ body {
     width: calc(100vw - 30px);
     height: calc(75vh - 30px);
     border: 1px solid lightgray;
-    overflow: hidden;
+    overflow: scroll;
 }
 .sheet-bar {
     height: 4vh;
@@ -166,9 +167,6 @@ body {
     border-right: 1px solid lightgray;
     border-bottom: 1px solid lightgray;
     outline-color: #107c41;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 .input-cell.selected{
     border: 2px solid #107c41;
@@ -201,4 +199,16 @@ body {
 }
 .menu-icon.selected{
     background-color: lightgray;
+}
+.input-cell.top-cell-selected{
+    border-top: none;
+}
+.input-cell.bottom-cell-selected{
+    border-bottom: 1px solid lightgray;
+}
+.input-cell.left-cell-selected{
+    border-left: none;
+}
+.input-cell.right-cell-selected{
+    border-right: 1px solid lightgray;
 }

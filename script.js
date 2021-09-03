@@ -28,8 +28,49 @@ $(document).ready(function () {
     $(".menu-icon.style-icon").click(function(){
         $(this).toggleClass("selected");
     });
-    $(".input-cell").click(function() { 
-        $(".input-cell.selected").removeClass("selected");
+    $(".input-cell").click(function(e) { 
+        let [row,col] = getRowCol(this);
+        if(e.ctrlKey==true){
+            if($(`#row-${row-1}-col-${col}`).hasClass("selected")){
+                $(`#row-${row-1}-col-${col}`).addClass("bottom-cell-selected");
+                $(this).addClass("top-cell-selected");
+            }
+            if($(`#row-${row+1}-col-${col}`).hasClass("selected")){
+                $(`#row-${row+1}-col-${col}`).addClass("top-cell-selected");
+                $(this).addClass("bottom-cell-selected");
+            }
+            if($(`#row-${row}-col-${col-1}`).hasClass("selected")){
+                $(`#row-${row}-col-${col-1}`).addClass("right-cell-selected");
+                $(this).addClass("left-cell-selected");
+            }
+            if($(`#row-${row}-col-${col+1}`).hasClass("selected")){
+                $(`#row-${row}-col-${col+1}`).addClass("left-cell-selected");
+                $(this).addClass("right-cell-selected");
+            }
+        }else{
+            $(".input-cell.selected").removeClass("selected");
+            $(this).removeClass("top-cell-selected");
+            $(this).removeClass("bottom-cell-selected");
+            $(this).removeClass("left-cell-selected");
+            $(this).removeClass("right-cell-selected");
+        }
         $(this).addClass("selected");
     });
+    $(".input-cell").dblclick(function () {
+        $(".input-cell.selected").removeClass("selected");
+        $(this).addClass("selected");
+        $(this).attr("contenteditable","true");
+        $(this).focus();
+    });
+    $(".input-cell-container").scroll(function () { 
+        $(".column-name-container").scrollLeft(this.scrollLeft);
+        $(".row-name-container").scrollTop(this.scrollTop);
+    });
+
+    function getRowCol(ele){
+        var array = $(ele).attr("id").split("-");
+        let row = parseInt(array[1]);
+        let col = parseInt(array[3]);
+        return [row,col];
+    }
 });
