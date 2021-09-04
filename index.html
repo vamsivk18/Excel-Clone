@@ -43,17 +43,17 @@
             </select>
             <select class="selector font-size-selector">
                 <option value="10">10</option>
-                <option value="10">12</option>
-                <option value="10">14</option>
-                <option value="10">16</option>
-                <option value="10">18</option>
-                <option value="10">20</option>
-                <option value="10">22</option>
-                <option value="10">24</option>
-                <option value="10">26</option>
-                <option value="10">28</option>
-                <option value="10">30</option>
-                <option value="10">32</option>
+                <option value="12">12</option>
+                <option value="14" selected>14</option>
+                <option value="16">16</option>
+                <option value="18">18</option>
+                <option value="20">20</option>
+                <option value="22">22</option>
+                <option value="24">24</option>
+                <option value="26">26</option>
+                <option value="28">28</option>
+                <option value="30">30</option>
+                <option value="32">32</option>
             </select>
             <div class="material-icons menu-icon icon-bold style-icon">format_bold</div>
             <div class="material-icons menu-icon icon-italic style-icon">format_italic</div>
@@ -61,8 +61,14 @@
             <div class="material-icons menu-icon align-icon selected" id="left">format_align_left</div>
             <div class="material-icons menu-icon align-icon" id="center">format_align_center</div>
             <div class="material-icons menu-icon align-icon" id="right">format_align_right</div>
-            <div class="material-icons menu-icon icon-color-fill">format_color_fill</div>
-            <div class="material-icons menu-icon icon-color-text">format_color_text</div>
+            <div class="menu-icon icon-color-fill">
+                <input type="color" class="color-picker" id="bg-picker"/>
+                <div class="material-icons bg-fill-icon">format_color_fill</div>
+            </div>
+            <div class="menu-icon icon-color-text">
+                <input type="color" class="color-picker" id="text-picker"/>
+                <div class="material-icons text-fill-icon">format_color_text</div>
+            </div>
         </div>
         <div class="formula-bar">
             <div class="formula-editor selected-cell"></div>

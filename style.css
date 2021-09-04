@@ -167,6 +167,8 @@ body {
     border-right: 1px solid lightgray;
     border-bottom: 1px solid lightgray;
     outline-color: #107c41;
+    font-family: "Noto Sans";
+    font-size: 14px;
 }
 .input-cell.selected{
     border: 2px solid #107c41;
@@ -211,4 +213,17 @@ body {
 }
 .input-cell.right-cell-selected{
     border-right: 1px solid lightgray;
+}
+.color-picker{
+    position: absolute;
+    height: 15px;
+    width: 34px;
+    border: none;
+    left: 5px;
+    bottom: -3px;
+    background-color: transparent;
+    cursor: pointer;
+}
+.icon-color-fill,.icon-color-text{
+    position: relative;
 }

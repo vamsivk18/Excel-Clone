@@ -2,13 +2,13 @@ var cellData = {
     "Sheet1" : {}
 }
 var defaultProperties = {
-    "text" : "",
+    "text":"",
     "font-weight":"",
     "font-style":"",
     "text-decoration":"",
     "text-align":"left",
-    "background-color":"white",
-    "color":"black",
+    "background-color":"#ffffff",
+    "color":"#000000",
     "font-family":"Noto Sans",
     "font-size":14
 }
@@ -84,6 +84,9 @@ $(document).ready(function () {
         }
         setIcons(data);
     });
+    $(document).on("blur",".input-cell.selected",function(){
+        setProperty("text",$(this).text());
+    });
     $(".input-cell").dblclick(function () {
         $(".input-cell.selected").removeClass("selected");
         $(this).addClass("selected");
@@ -93,6 +96,25 @@ $(document).ready(function () {
     $(".input-cell-container").scroll(function () { 
         $(".column-name-container").scrollLeft(this.scrollLeft);
         $(".row-name-container").scrollTop(this.scrollTop);
+    });
+    $(".bg-fill-icon").click(function() { 
+        $("#bg-picker").click();
+    });
+    $(".text-fill-icon").click(function() { 
+        $("#text-picker").click();
+    });
+    $("#text-picker").change(function(){
+        setProperty("color",$(this).val());
+    });
+    $("#bg-picker").change(function(){
+        setProperty("background-color",$(this).val());
+    });
+    $(".font-family-selector").change(function(){
+        setProperty("font-family",$(this).val());
+    });
+    $(".font-size-selector").change(function(){
+        var val = $(this).val()+"px";
+        setProperty("font-size",val);
     });
 
     function getRowCol(ele){
@@ -140,7 +162,6 @@ $(document).ready(function () {
                     delete cellData[sheet][row];
             }
             $(this).css(property,value);
-            console.log(cellData[sheet][row]);
         });
     }    
 
@@ -153,5 +174,9 @@ $(document).ready(function () {
         else $(".icon-italic").removeClass("selected");
         if(data["font-weight"]=="bold") $(".icon-bold").addClass("selected");
         else $(".icon-bold").removeClass("selected");
+        $("#bg-picker").val(data["background-color"]);
+        $("#text-picker").val(data["color"]);
+        $(".font-size-selector").val(parseInt(data["font-size"]));
+        $(".font-family-selector").val(data["font-family"]);
     }
 });
