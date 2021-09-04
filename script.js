@@ -1,3 +1,20 @@
+var cellData = {
+    "Sheet1" : {}
+}
+var defaultProperties = {
+    "text" : "",
+    "font-weight":"",
+    "font-style":"",
+    "text-decoration":"",
+    "text-align":"left",
+    "background-color":"white",
+    "color":"black",
+    "font-family":"Noto Sans",
+    "font-size":14
+}
+
+var sheet = "Sheet1";
+
 $(document).ready(function () {
     for (var i = 1; i <= 100; i++) {
         var n = i;
@@ -23,9 +40,13 @@ $(document).ready(function () {
     }
     $(".align-icon").click(function() { 
         $(".align-icon.selected").removeClass("selected");
+        var val = $(this).attr("id");
         $(this).addClass("selected");
+        findAndSetProperty(this,val);
     });
     $(".menu-icon.style-icon").click(function(){
+        var val = $(this).hasClass("selected");
+        findAndSetProperty(this,val);
         $(this).toggleClass("selected");
     });
     $(".input-cell").click(function(e) { 
@@ -49,12 +70,19 @@ $(document).ready(function () {
             }
         }else{
             $(".input-cell.selected").removeClass("selected");
-            $(this).removeClass("top-cell-selected");
-            $(this).removeClass("bottom-cell-selected");
-            $(this).removeClass("left-cell-selected");
-            $(this).removeClass("right-cell-selected");
+            $(".input-cell").removeClass("top-cell-selected");
+            $(".input-cell").removeClass("bottom-cell-selected");
+            $(".input-cell").removeClass("left-cell-selected");
+            $(".input-cell").removeClass("right-cell-selected");
         }
         $(this).addClass("selected");
+        $('.input-cell').attr("contenteditable","false");
+        let [r,c] = getRowCol(this);
+        var data = defaultProperties;
+        if(cellData[sheet][r] && cellData[sheet][r][c]){
+            data = cellData[sheet][r][c];
+        }
+        setIcons(data);
     });
     $(".input-cell").dblclick(function () {
         $(".input-cell.selected").removeClass("selected");
@@ -72,5 +100,58 @@ $(document).ready(function () {
         let row = parseInt(array[1]);
         let col = parseInt(array[3]);
         return [row,col];
+    }
+
+    function findAndSetProperty(ele,val) {
+        var property = "";
+        var value = "";
+        if($(ele).hasClass("align-icon")){
+            property = "text-align";
+            value = val;
+        }else if($(ele).hasClass("icon-bold")){
+            if(val==false) value = "bold";
+            property = "font-weight";
+        }else if($(ele).hasClass("icon-italic")){
+            if(val==false) value = "italic";
+            property = "font-style";
+        }else if($(ele).hasClass("icon-underline")){
+            if(val==false) value = "underline";
+            property = "text-decoration";
+        }
+        setProperty(property,value);
+    }
+
+    function setProperty(property,value) {
+        $(".input-cell.selected").each(function () {
+            let [row,col] = getRowCol(this);
+            if(cellData[sheet][row] && cellData[sheet][row][col]){
+                cellData[sheet][row][col][property] = value;
+            }else if(cellData[sheet][row]){
+                cellData[sheet][row][col] = {...defaultProperties};
+                cellData[sheet][row][col][property] = value;
+            }else{
+                cellData[sheet][row] = {};
+                cellData[sheet][row][col] = {...defaultProperties};
+                cellData[sheet][row][col][property] = value;
+            }
+            if(JSON.stringify(cellData[sheet][row][col])==JSON.stringify(defaultProperties)){
+                delete cellData[sheet][row][col];
+                if(Object.keys(cellData[sheet][row]).length==0)
+                    delete cellData[sheet][row];
+            }
+            $(this).css(property,value);
+            console.log(cellData[sheet][row]);
+        });
+    }    
+
+    function setIcons(data) {
+        $(".align-icon").removeClass("selected");
+        $(`.align-icon#${data["text-align"]}`).addClass("selected");
+        if(data["text-decoration"]=="underline") $(".icon-underline").addClass("selected");
+        else $(".icon-underline").removeClass("selected");
+        if(data["font-style"]=="italic") $(".icon-italic").addClass("selected");
+        else $(".icon-italic").removeClass("selected");
+        if(data["font-weight"]=="bold") $(".icon-bold").addClass("selected");
+        else $(".icon-bold").removeClass("selected");
     }
 });
