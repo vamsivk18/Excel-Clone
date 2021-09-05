@@ -122,7 +122,6 @@ body {
     width: 40px;
 }
 .sheet-tab {
-    border-bottom: 3px solid #107c41;
     padding-left: 10px;
     padding-right: 10px;
     width: 80px;
@@ -130,13 +129,17 @@ body {
     font-weight: 600;
     border-right: 1px solid lightgrey;
 }
+.sheet-tab.selected{
+    border-bottom: 3px solid #107c41;
+}
 .icon-left-scroll:hover,.icon-right-scroll:hover{
     background-color: lightgrey;
     cursor: pointer;
 }
 .sheet-tab-container {
     border: 1px solid lightgrey;
-    width: calc(100vw - 111px)
+    width: calc(100vw - 111px);
+    display: flex;
 }
 .icon-add:hover {
     cursor: pointer;
