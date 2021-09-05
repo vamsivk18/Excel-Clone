@@ -8,6 +8,7 @@ body {
 }
 .container {
     height: 100vh;
+    position: relative;
 }
 .title-bar {
     height: 5vh;
@@ -229,4 +230,67 @@ body {
 }
 .icon-color-fill,.icon-color-text{
     position: relative;
+}
+.delete-sheet,.rename-sheet{
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+.delete-sheet:hover,.rename-sheet:hover{
+    cursor: pointer;
+    background-color: lightgray;
+}
+.sheet-bar-options{
+    position: absolute;
+    bottom: 50px;
+    background-color: white;
+    height: 60px;
+    width: 100px;
+    font-size: medium;
+    font-weight: 600;
+    bottom: 5vh;
+    border-radius: 10px;
+    box-shadow: 0 0 1px 1px lightgray;
+}
+.rename-display{
+    padding-top: 20px;
+    position: absolute;
+    left: calc((100vw)/2 - 100px);
+    top: calc((100vh)/2 - 40px);;
+    background-color: white;
+    width: 200px;
+    height: 80px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    box-shadow: 0 0 2px 2px lightgray;
+}
+.rename-input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25px;
+    padding-bottom: 0;
+}
+.rename-response{
+    display: flex;
+    height: 25px;
+}
+.apply,.cancel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 33px;
+}
+.apply:hover,.cancel:hover{
+    cursor: pointer;
+    background-color: lightgray;
+    color: white;
+    border-radius: 10px;
+}
+.apply:hover{
+    background-color: green;
+    border-radius: 10px;
 }
